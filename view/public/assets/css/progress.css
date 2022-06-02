@@ -1,0 +1,66 @@
+#carregamento{
+    background-image: linear-gradient(to top right, #5408FF, #8D87D3, #C9D1DA);
+    background-repeat: no-repeat;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#fundo-carregamento{
+    height: 80vh;
+}
+
+#progress-container {
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+    border: 4px solid #ffffff56;
+    border-radius: 30px;
+    margin-top: 5vh;
+    position: relative;
+}
+
+#progress {
+    position: absolute;
+    width: 0%;
+    height: 42px;
+    top: 0;
+    left: 0;
+    background: #5200FF;
+    border-radius: 20px;
+    background: -webkit-linear-gradient(to right, #D4F2FF, #789EFF, #5200FF);
+    background: linear-gradient(to right, #D4F2FF, #789EFF, #5200FF);
+    transition: all 0.2s ease;
+}
+
+#indicator {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+}
+
+#start {
+    background-color: #202020;
+    border: 1px solid #fafafa;
+    background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0.8rem;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 20px;
+}
+
+#start:hover {
+    transform: scale(1.2);
+    transition: 0.4s;
+}

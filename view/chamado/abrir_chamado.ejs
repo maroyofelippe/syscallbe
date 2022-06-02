@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Syscall</title>
+        <link rel="stylesheet" href="../public/css/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="../public/js/aumentar.js"></script>
+        <script src="../public/js/contraste.js"></script>
+    </head>
+    <body>
+        <header>
+            <div id="acessibilidade">
+                <ul id="atalhos">
+                    <li><a href="#conteudo" accesskey="1" title="Ir diretamente para o conteúdo">Ir para o Conteúdo [1]</a></li>
+                    <li><a href="#menu" accesskey="2" title="Ir diretamente para o menu">Ir para o Menu [2]</a></li>
+                    <li><a href="#rodape" accesskey="3" title="Ir diretamente para o rodapé"> Ir para o Rodapé [3]</a></li>
+    
+                    <li id="pgaccess"><a href="/acessibilidade" title="Ir para a página de Acessibilidade">ACESSIBILIDADE</a></li>
+                    <li id="contrastep"><a href="javascript:void(0);" id="contraste">CONTRASTE PRETO</a></li>
+                    <li id="scontraste"><a href="javascript:void(0);" id="sem_contraste">SEM CONTRASTE</a></li>
+                    <li id="fonteA"><a href="javascript:void(0);" id="aumentar">A+</a></li>
+                    <li id="fontea"><a href="javascript:void(0);" id="diminuir">A-</a></li>
+                </ul>
+            </div>
+            <div id="logos">
+                <img src="../imagens/logo_fatec_branco.png" id="logo_fatec">
+                <img src="../imagens/2020_logo_cps_gov_sec_versao_horizontal.png" id="logo_cps">
+            </div>
+    
+            <nav id="nav">
+                <!--Menu Hamburguer-->
+                <label for="bt_menu"><img src="../imagens/menu.png" alt="menu"></label>
+                <input type="checkbox" id="bt_menu">
+                <!--Fim Menu Hamburguer-->
+                <ul id="menu">
+                    <li class="menu_item"><a href="/inicio">Início</a></li>
+                    <li class="menu_item"><a href="abrirChamado">Abrir Chamado</a></li>
+                    <li class="menu_item"><a href="javascript:void(0);">Acompanhar Chamados</a>
+                        <ul id="submenu">
+                            <li class="menu_item_submenu"><a href="./acompanhamento_equipamento.html">Pesquisar Pelo Equipamento</a></li>
+                            <li class="menu_item_submenu"><a href="/todosChamados">Visualizar Todos</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu_item"><a href="/faq">FAQ</a></li>
+                    <li class="menu_item"><a href="/perfil">Perfil</a></li>
+                    <li class="menu_item"><a href="/login">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="conteudo">
+
+            <h1>Abrir Chamados</h1>
+
+            <form name="abrirChamado" id="abrirChamado" action="/chamado/newChamado" method="post">
+                <fieldset>
+                    <legend>Dados Pessoais</legend>
+                        <label for="nome" class="required">Nome</label><br>
+                        <input type="text" name="nome" id="nome" disabled placeholder="Nome Completo" value=<%=usuario.nome%>><br><br>
+
+                        <label for="email2" class="required">E-mail Institucional</label><br><br>
+                        <input type="text" name="email" id="email2" disabled placeholder="Email Institucional" value=<%=usuario.email%>>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Sobre seu problema</legend>
+                    <table>
+                        <tr>
+                            <td><label for="tipoAmbiente2" class="required">Tipo Ambiente</label></td>
+                            <td><label for="localAmbiente2" class="required">Ambiente</label></td>
+                            <td><label for="tipoEquipamento2" class="required">Tipo de Equipamento</label></td>
+                            <td><label for="nomeEquipamento2" class="required">Nome do Equipamento</label></td>
+                        </tr>
+                        <tr>
+                        <td class="td1">
+                            <select name="tipoAmbiente" id="tipoAmbiente2">
+                                <option value="" selected disabled>Selecione um Tipo de Ambiente</option>
+                                <% tipoAmbiente.forEach(function(tipoAmbiente){ %>
+                                    <option value=<%= tipoAmbiente.idTipoAmbiente %>> <%= tipoAmbiente.descricao%> </option>
+                                <% }) %>                                
+                            </select><br><br>
+                        </td>
+
+                        <td class="td1">
+                            
+                            <select name="Ambiente_idAmbiente" id="localAmbiente2">
+                                <option value="" selected disabled>Selecione um Local</option>
+                                <% ambiente.forEach(function(ambiente){ %>
+                                    <option value=<%= ambiente.idAmbiente %>> <%= ambiente.predio%> - <%= ambiente.andar%> - <%= ambiente.sala%></option>
+                                <% }) %>
+                            </select><br><br>
+                        </td>
+                        <td class="td2">
+                            
+                            <select name="TipoEquipamento_codTipoEquipamento" id="tipoEquipamento2">
+                                <option value="" selected disabled>Selecione tipo de Equipamento</option>
+                                <% tipoeqp.forEach(function(tipoeqp){ %>
+                                    <option value=<%= tipoeqp.codTipoEquipamento %>> <%= tipoeqp.descricao%> </option>
+                                <% }) %>
+                            </select><br><br>
+                        </td>
+                        <td class="td3">
+
+                            <select name="Equipamento_idEquipamento" id="Equipamento">
+                                <option value="" selected disabled>Selecione o Equipamento</option>
+                                <% equipamento.forEach(function(equipamento){ %>
+                                    <option value=<%= equipamento.idEquipamento %>> <%= equipamento.descricao%> </option>
+                                <% }) %>
+                            </select><br><br>
+                        </td>
+                    </tr>
+                    </table>                        
+                        <label for="descricaoProblema" class="required">Descrição da Solicitação</label><br>
+                        <textarea name="descricaoProblema" id="descricaoProblema" cols="50" rows="20" placeholder="Descreva aqui sua solicitação com os detalhes desejados."></textarea>
+                </fieldset>
+                <input type="submit" name="enviar" id="enviar" value="Enviar"> <input type="reset" name="limpar" id="limpar" value="Limpar">
+
+
+            </form>
+
+ 
+        </main>
+
+        <footer id="rodape">
+            <div>
+                <p class="title_rodape">Como nos encontrar?</p></li>
+                <p class="sub_title_rodape">Faculdade de Tecnologia da Zona Leste</p>
+                <ul class="rodape-col-1">
+                    <li>
+                        <a href="javascript:void(0);">
+                            <span class="icon"><ion-icon name="location-sharp"></ion-icon></span>
+                            <span class="title">Avenida Águia de Haia, 2983. Cidade A.E. Carvalho, CEP 03694-000, São Paulo-SP.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <span class="icon"><ion-icon name="call-sharp"></ion-icon></span>
+                            <span class="title">(11) 2049-2600 (11) 2026-0378 (11) 2026-1303 (11) 2041-2187</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <span class="icon"><ion-icon name="mail-sharp"></ion-icon></span>
+                            <span class="title">Fale Conosco</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="rodape-col-2">
+                    <li><p class="title_rodape">Acompanhe as nossas redes sociais</p></li>
+
+                    <ul id="redes-sociais">
+                        <li>
+                            <a href="https://www.linkedin.com/company/faculdade-de-tecnologia-zona-leste-fatec-zl/" target="_blank">
+                                <img src="../imagens/linkedin.png" alt="Imagem com a logo da rede social Linkedin nas cores azul e branca" class="redes">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/Fateczl_oficial" target="_blank">
+                                <img src="../imagens/twitter.png" alt="Imagem com a logo da rede social Twitter nas cores azul e branca" class="redes">
+                            </a>
+                        </li><li>
+                            <a href="https://www.instagram.com/fateczl.oficial/" target="_blank">
+                                <img src="../imagens/instagram.png" alt="Imagem com a logo da rede social Instagram nas cores branca, roxo, rosa e amarela" class="redes">
+                            </a>
+                        </li><li>
+                            <a href="https://www.youtube.com/c/FatecZLeste" target="_blank">
+                                <img src="../imagens/youtube.png" alt="Imagem com a logo da rede social YouTube nas cores branca e vermelha" class="redes">
+                            </a>
+                        </li><li>
+                            <a href="https://www.facebook.com/fateczl.oficial" target="_blank">
+                                <img src="../imagens/facebook.png" alt="Imagem com a logo da rede social Facebook nas cores azul e branca" class="redes">
+                            </a>
+                        </li>
+                    </ul>
+                    <li>
+                        <p>
+                            Desenvolvido por Ana Claudia, Giovanna de Souza, MrRoyo. &copy; 2022.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>      
+      <script src="../public/assets/js/function.js"></script>
+      <script src="../public/assets/vendor/jquery/jquery.min.js"></script>
+      <script src="../public/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+
+
+
+<!--VLibras para acessibilidade de deficientes auditivos-->
+        <div vw class="enabled" id="vlibras">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+              <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
+        
+    </body>
+</html>

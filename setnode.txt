@@ -1,0 +1,12 @@
+*Execute os comandos npm abaixo no terminal
+
+npm install express --save
+npm install nodemon -g
+npm install 
+npm install mysql2
+npm install body-parser
+npm install ejs
+npm install consign
+npm install passport
+npm install passport-local
+npm install express-session
