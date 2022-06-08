@@ -377,7 +377,7 @@ th{
     background-color: #ff6b00;
 }
 #aberto{
-    background-color: #0085ff;
+    background-color: #05F000;
 }
 #agresposta{
     background-color: #edb054;
@@ -387,9 +387,10 @@ th{
 }
 #rejeitado{
     background-color: #2d4f4f;
+    
 }
 #cancelado{
-    background-color: #A31212;
+    background-color: #ff0000;
 }
 #agendado{
     background-color: #9f9f9f;

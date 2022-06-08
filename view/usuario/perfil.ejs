@@ -36,18 +36,16 @@
             <input type="checkbox" id="bt_menu">
             <!--Fim Menu Hamburguer-->
             <ul id="menu">
-                <li class="menu_item"><a href="inicio">Início</a></li>
+                <li class="menu_item"><a href="/inicio">Início</a></li>
                 <li class="menu_item"><a href="chamado/abrirChamado">Abrir Chamado</a></li>
                 <li class="menu_item"><a href="javascript:void(0);">Acompanhar Chamados</a>
                     <ul id="submenu">
-                        <li class="menu_item_submenu"><a href="./acompanhamento_equipamento.html">Pesquisar Pelo Equipamento</a></li>
                         <li class="menu_item_submenu"><a href="todosChamados">Visualizar Todos</a></li>
                     </ul>
                 </li>
-                <li class="menu_item"><a href="faq">FAQ</a></li>
-                <li class="menu_item"><a href="perfil.html">Perfil</a></li>
-                <li class="menu_item"><a href="login.html">Login</a></li>
-                <li class="menu_item"><a href="javascript:void(0);">Logout</a></li>
+                <li class="menu_item"><a href="/faq">FAQ</a></li>
+                <li class="menu_item"><a href="/perfil">Perfil</a></li>
+                <li class="menu_item"><a href="/login">Login</a></li>
             </ul>
         </nav>
         </header>
@@ -58,28 +56,28 @@
             <!--Tela de Cadastro-->
                 <h1>Atualize seus dados</h1>
 
-                <form name="login" id="form" method="POST" onsubmit="return validarCadastro();">
+                <form name="login" id="form" method="POST" action="/updatePerfil">
                     <fieldset>
                         <legend>Dados Pessoais</legend>
 
                         <label for="nome" class="required">Nome</label><br>
-                        <input type="text" name="nome" id="nome" placeholder="Nome Completo" minlength="5" maxlength="255" required><br><br>
+                        <input type="text" name="nome" id="nome" placeholder="Nome Completo" minlength="5" maxlength="255" required value="<%=usuario.nome%>"><br><br>
 
                         <label for="registro" class="required" id="label-registro">Registro na Fatec</label>
 
                         <label for="registro_txt" class="required">Registro</label><br>
 
-                        <select name="registro" id="registro" onchange="mudarRegistro();" required>
+                        <select name="TipoUsuario_codTipoUsuario" id="registro" onchange="mudarRegistro();" required>
                             <option value="" selected disabled>Selecione um Tipo de Registro</option>
-                            <option value="RA">RA</option>
-                            <option value="RM">RM</option>
+                            <option value=1>RA</option>
+                            <option value=2>RM</option>
                         </select>
 
-                        <input type="text" name="registro_txt" id="registro_txt" placeholder="Digite aqui seu" maxlength="13" style="width: 71%;"> <!--Colocar aq no JS qual é o registro selecionado-->
+                        <input type="text" name="registro" id="registro_txt" placeholder="Digite aqui seu" maxlength="13" style="width: 71%;" value="<%=usuario.registro%>"> <!--Colocar aq no JS qual é o registro selecionado-->
                         <a href="faq.html"><img src="../imagens/duvida.png" id="duvida"></a><br><br>
 
                         <label for="email" class="required">Email Institucional</label><br>
-                        <input type="text" name="email" id="email" placeholder="Email Institucional" minlength="5" maxlength="255" required>
+                        <input type="text" name="email" id="email" placeholder="Email Institucional" minlength="5" maxlength="255" required value="<%=usuario.email%>">
                         <a href="faq.html"><a href="faq.html"><img src="../imagens/duvida.png" id="duvida"></a></a><br><br>
 
                         <label for="senha" class="required" id="senha_label">Senha</label><br>
@@ -148,7 +146,7 @@
                     </ul>
                     <li>
                         <p>
-                            Desenvolvido por Ana Claudia, Evaristo Batista, Giovanna de Souza, Lucas Gimenez, Marco Antônio. Apoiado e Orientado por Edson Junior &copy; 2021.
+                            Desenvolvido por Ana Claudia, Giovanna de Souza, MrRoyo. &copy; 2022.
                         </p>
                     </li>
                 </ul>

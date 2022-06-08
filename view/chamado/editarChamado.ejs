@@ -55,7 +55,7 @@
 
             <h1>Edição de Chamados</h1>
 
-            <form name="editarChamado" id="editarChamado" action="" method="post">
+            <form name="editarChamado" id="editarChamado" action="/chamado/upChamado" method="post">
                 <fieldset>
                     <legend>Dados Pessoais</legend>
                         <label for="nome" class="required">Nome</label><br>
@@ -76,11 +76,11 @@
                         
 
                         <tr>
-                            <td id="td5"><input type="text" name="chamadoNum" id="chamadoNum" disabled value=<%=dadosChamado.idChamado%>></td>
-                            <td id="td6"><input type="text" name="dataAbertura" id="dataAbertura" disabled value=<%=dataFormatada%> /></td>
+                            <td id="td5"><input type="text" name="idChamado" id="idChamado" value=<%=dadosChamado.idChamado%>></td>
+                            <td id="td6"><input type="text" name="dataAbertura" id="dataAbertura" value=<%=dataFormatada%> /></td>
                             <td class="td7"><br>
                             
-                                <select name="profissionalTI" id="profissionalTI2">
+                                <select name="Profissionalti_idProfissionalTI" id="profissionalTI2">
                                     <option value="" selected disabled>Selecione um Profissional de TI</option>
                                     <% ambiente.forEach(function(ambiente){ %>
                                         <option selected value=<%= chamadoId.Ambiente %>></option>
@@ -127,7 +127,7 @@
                         <td class="td4">
 
                             <select name="Equipamento_idEquipamento" id="Equipamento">
-                                <option value="<%= dadosChamado.Equipamento_idEquipamento %>" selected disabled><%= dadosChamado.Equipamento %></option>
+                                <option value="<%= dadosChamado.Equipamento_idEquipamento %>" selected><%= dadosChamado.Equipamento %></option>
                             </select><br><br>
                         </td>
                     </tr>
@@ -136,13 +136,13 @@
                         <textarea name="descricaoProblema" id="descricaoProblema" cols="50" rows="20" placeholder="Descreva aqui sua solicitação com os detalhes desejados."><%=dadosChamado.descricaoProblema %></textarea><br>
 
                         <label for="descricaoSolucao" class="required">Descrição da Solução</label><br>
-                        <textarea name="descricaoSolucao" id="descricaoSolucao" cols="50" rows="20" placeholder="Descreva aqui a solução do problema relatado."><%=dadosChamado.descricaoProblema %></textarea><br><br>
+                        <textarea name="descricaoSolucao" id="descricaoSolucao" cols="50" rows="20" placeholder="Descreva aqui a solução do problema relatado."><%=dadosChamado.descricaoSolucao %></textarea><br><br>
 
                         <label for="dataResolucao" class="required">Data Resolução</label><br>
-                        <input type="date" name="dataResolucao" id="dataResolucao"></td><br><br>
+                        <input type="date" name="dataResolucao" id="dataResolucao" value="<%= dataRFormatada%>"></td><br><br>
                             
                         <label for="dataEncerramento" class="required">Data Encerramento</label><br>
-                        <input type="date" name="dataEncerramento" id="dataEncerramento">
+                        <input type="date" name="dataEncerramento" id="dataEncerramento" value="<%= dataEFormatada%>">
 
                 </fieldset>
                 <input type="submit" name="enviar" id="enviar" value="Enviar"> <input type="reset" name="limpar" id="limpar" value="Limpar">

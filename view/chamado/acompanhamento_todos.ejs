@@ -40,13 +40,12 @@
                     <li class="menu_item"><a href="chamado/abrirChamado">Abrir Chamado</a></li>
                     <li class="menu_item"><a href="javascript:void(0);">Acompanhar Chamados</a>
                         <ul id="submenu">
-                            <li class="menu_item_submenu"><a href="./acompanhamento_equipamento.html">Pesquisar Pelo Equipamento</a></li>
                             <li class="menu_item_submenu"><a href="todosChamados">Visualizar Todos</a></li>
                         </ul>
                     </li>
-                    <li class="menu_item"><a href="faq">FAQ</a></li>
-                    <li class="menu_item"><a href="perfil">Perfil</a></li>
-                    <li class="menu_item"><a href="login">Login</a></li>
+                    <li class="menu_item"><a href="/faq">FAQ</a></li>
+                    <li class="menu_item"><a href="/perfil">Perfil</a></li>
+                    <li class="menu_item"><a href="/login">Login</a></li>
                 </ul>
             </nav>
         </header>
@@ -64,9 +63,9 @@
                     <input type="button" id="agaprovacao" value="Aguardando Aprovação">
                     <input type="button" id="aberto" value="Aberto">
                     <input type="button" id="agendado" value="Agendado">
-                    <input type="button" id="agresposta" value="Aguardando Resposta">
-                    <input type="button" id="concluido" value="Concluído">
-                    <input type="button" id="rejeitado" value="Rejeitado">
+                    <input type="button" id="agresposta" value="Em Andamento">
+                    <input type="button" id="concluido" value="Resolvido">
+                    <input type="button" id="rejeitado" value="Encerrado">
                     <input type="button" id="cancelado" value="Cancelado">
                 </fieldset>
                 <input type="submit" name="pesquisar" id="pesquisar" value="Pesquisar"> <input type="reset" name="limpar" id="limpar" value="Limpar">
@@ -96,12 +95,8 @@
                                 <td class="tdchamados"><%= todosChamados.dataAbertura%></td>
                                 <td class="tdchamados"><%= todosChamados.tipoEquipamento%></td>
                                 <td class="tdchamados"><%= todosChamados.descricaoProblema%></td>
-                                <td class="tdchamados"><input type="button" id="btnStatus" name="btnstatus" value="<%= todosChamados.descricao%>">
-                                    <style>
-                                        #btnStatus{
-                                            background-color: <%= todosChamados.cor%>;
-                                        }
-                                    </style>
+                                <td class="tdchamados"><input type="button" id="btnStatus" name="btnstatus" style="background-color:<%= todosChamados.cor%> ;" value="<%= todosChamados.descricao%>">
+                                    
                                 </td>
                                 <td class="tdchamados">
                                     <!-- <input type="button" id="btnEditarChamado" value="<%= todosChamados.idChamado%>" onclick="/chamado/editarChamado"> -->

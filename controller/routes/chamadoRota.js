@@ -51,6 +51,7 @@ module.exports = function (syscall) {
         var chID = req.params.id;
         const chamadoId = await chamadoBanco.getChamadoById(chID);
 
+        console.log(chamadoId);
         const tipoeqp = await equipamentoBanco.getTipoEquipamento();
         const tipoAmbiente = await ambienteBanco.getTipoAmbiente();
         const ambiente = await ambienteBanco.getAmbiente();
@@ -64,18 +65,38 @@ module.exports = function (syscall) {
         var ano = data.getFullYear();
         let dataFormatada = dia + '/' + mes + '/' + ano;
 
+        let dataRFormatada = "";
+        let dataEFormatada = "";
+
+        if (dadosChamado.dataResolucao) {
+            let dataR = dadosChamado.dataResolucao;
+            var dia = dataR.getDate().toString().padStart(2, '0');
+            var mes = (dataR.getMonth() + 1).toString().padStart(2, '0');
+            var ano = dataR.getFullYear();
+            dataRFormatada = ano + '-' + mes + '-' + dia;
+        }
+
+        if (dadosChamado.dataEncerramento) {
+            let dataE = dadosChamado.dataEncerramento;
+            var dia = dataE.getDate().toString().padStart(2, '0');
+            var mes = (dataE.getMonth() + 1).toString().padStart(2, '0');
+            var ano = dataE.getFullYear();
+            dataEFormatada = ano + '-' + mes + '-' + dia;
+        }
+
         if (req.query.fail)
             res.render("chamado/editarChamado", { mensagem: "Chamados" });
-        else res.render("chamado/editarChamado", { mensagem: null, usuario, dadosChamado, chamadoId, tipoAmbiente, tipoeqp, ambiente, equipamento, dataFormatada });
+        else res.render("chamado/editarChamado", { mensagem: null, usuario, dadosChamado, chamadoId, tipoAmbiente, tipoeqp, ambiente, equipamento, dataFormatada, dataRFormatada, dataEFormatada });
     });
 
-    syscall.post("/chamado/upChamado", (req, res) => {
+    syscall.post("/chamado/upChamado", async (req, res) => {
+        var usuario = req.user;
         var chamado = {
             idChamado: req.body.idChamado,
             dataAbertura: req.body.dataAbertura,
             descricaoProblema: req.body.descricaoProblema,
             Equipamento_idEquipamento: req.body.Equipamento_idEquipamento,
-            Usuario_idUsuario: req.body.Usuario_idUsuario,
+            Usuario_idUsuario: usuario.idUsuario,
             Profissionalti_idProfissionalTI: req.body.Profissionalti_idProfissionalTI,
             dataResolucao: req.body.dataResolucao,
             descricaoSolucao: req.body.descricaoSolucao,
@@ -83,7 +104,7 @@ module.exports = function (syscall) {
         };
         try {
             chamadoBanco.updateChamado(chamado);
-            res.render("chamado/acompanhamento_todos", { mensagem: "Alterado com sucesso" });
+            res.redirect('/todosChamados');
         } catch (error) {
             res.render("chamado/acompanhamento_todos", {
                 title: "Edição Chamado",
@@ -91,52 +112,5 @@ module.exports = function (syscall) {
             });
         }
     });
-
-    syscall.post("/chamado/resChamado", (req, res) => {
-        var chamado = {
-            idChamado: req.body.idChamado,
-            dataAbertura: req.body.dataAbertura,
-            descricaoProblema: req.body.descricaoProblema,
-            Equipamento_idEquipamento: req.body.Equipamento_idEquipamento,
-            Usuario_idUsuario: req.body.Usuario_idUsuario,
-            Profissionalti_idProfissionalTI: req.body.Profissionalti_idProfissionalTI,
-            dataResolucao: req.body.dataResolucao,
-            descricaoSolucao: req.body.descricaoSolucao,
-            dataEncerramento: req.body.dataEncerramento,
-        };
-        try {
-            chamadoBanco.upResolucaoChamado(chamado);
-            res.render("chamado/acompanhamento_todos", { mensagem: "Chamado Resolvido" });
-        } catch (error) {
-            res.render("chamado/acompanhamento_todos", {
-                title: "Edição Chamado",
-                mensagem: "Erro na resolução do Chamado",
-            });
-        }
-    });
-
-    syscall.post("/chamado/encerraChamado", (req, res) => {
-        var chamado = {
-            idChamado: req.body.idChamado,
-            dataAbertura: req.body.dataAbertura,
-            descricaoProblema: req.body.descricaoProblema,
-            Equipamento_idEquipamento: req.body.Equipamento_idEquipamento,
-            Usuario_idUsuario: req.body.Usuario_idUsuario,
-            Profissionalti_idProfissionalTI: req.body.Profissionalti_idProfissionalTI,
-            dataResolucao: req.body.dataResolucao,
-            descricaoSolucao: req.body.descricaoSolucao,
-            dataEncerramento: req.body.dataEncerramento,
-        };
-        try {
-            chamadoBanco.upEncerraChamado(chamado);
-            res.render("chamado/acompanhamento_todos", { mensagem: "Chamado Encerrado com sucesso" });
-        } catch (error) {
-            res.render("chamado/acompanhamento_todos", {
-                title: "Edição Chamado",
-                mensagem: "Erro no Encerramento do Chamado",
-            });
-        }
-    });
-
 }
 
