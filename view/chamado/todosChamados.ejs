@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Syscall</title>
+  <link href="../public/assets/img/logo.png" rel="icon" />
+  <link rel="stylesheet" href="../public/assets/css/style_antigo.css" />
+  <link rel="stylesheet" href="../public/assets/css/style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- ======= Sidebar ======= -->
+  <div class="navigation active">
+    <ul>
+      <li class="list">
+        <a href="/inicio">
+          <span class="icon">
+            <ion-icon name="home-outline"></ion-icon>
+          </span>
+          <span class="title">Inicio</span>
+        </a>
+      </li>
+      <li class="list active">
+        <a href="chamado/abrirChamado">
+          <span class="icon">
+            <ion-icon name="add-outline"></ion-icon>
+          </span>
+          <span class="title">Novo Chamado</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="/todosChamados">
+          <span class="icon">
+            <ion-icon name="search-outline"></ion-icon>
+          </span>
+          <span class="title">Chamados Abertos</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon">
+            <ion-icon name="documents-outline"></ion-icon>
+          </span>
+          <span class="title">Meus Chamados</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="/faq">
+          <span class="icon">
+            <ion-icon name="help-outline"></ion-icon>
+          </span>
+          <span class="title">FAQ</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="/categorias">
+          <span class="icon">
+            <ion-icon name="list-outline"></ion-icon>
+          </span>
+          <span class="title">Categorias</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="/perfil">
+          <span class="icon">
+            <ion-icon name="person-outline"></ion-icon>
+          </span>
+          <span class="title">Perfil</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon">
+            <ion-icon name="settings-outline"></ion-icon>
+          </span>
+          <span class="title">Configurações</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon">
+            <ion-icon name="log-out-outline"></ion-icon>
+          </span>
+          <span class="title">Logout</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="toggle">
+    <ion-icon name="menu-outline" class="open"></ion-icon>
+    <ion-icon name="close-outline" class="close"></ion-icon>
+  </div>
+  <!-- ======= Fim Sidebar ======= -->
+
+  <img id="logo-interna" src="../public/assets/img/LogoInterna.png" alt="" />
+
+  <main id="conteudo">
+    <h1>Acompanhamento de Chamados</h1>
+
+    <form name="todosChamados" id="todosChamados" action="" method="">
+      <fieldset>
+        <legend>Resultados da Pesquisa</legend>
+        <table>
+          <tr>
+            <th class="thtdchamados">Nº Chamado</th>
+            <th class="thtdchamados">Usuário</th>
+            <th class="thtdchamados">Local</th>
+            <th class="thtdchamados">Data Abertura</th>
+            <th class="thtdchamados">Equipamento</th>
+            <th class="thtdchamados">Descrição Problema</th>
+            <th class="thtdchamados">Status</th>
+            <th class="thtdchamados">Editar</th>
+            <th class="thtdchamados">Visualizar</th>
+          </tr>
+          <% todosChamados.forEach(function(todosChamados){ %>
+            <tr>
+              <td class="tdchamados">
+                <%= todosChamados.idChamado%>
+              </td>
+              <td class="tdchamados">
+                <%= todosChamados.nome%>
+              </td>
+              <td class="tdchamados">
+                <%= todosChamados.Ambiente%>
+              </td>
+              <td class="tdchamados">
+                <%= todosChamados.dataAbertura%>
+              </td>
+              <td class="tdchamados">
+                <%= todosChamados.tipoEquipamento%>
+              </td>
+              <td class="tdchamados">
+                <%= todosChamados.descricaoProblema%>
+              </td>
+              <td class="tdchamados"><input type="button" id="btnStatus" name="btnstatus"
+                  style="background-color:<%= todosChamados.cor%> ;" value="<%= todosChamados.descricao%>">
+
+              </td>
+              <td class="tdchamados">
+                <!-- <input type="button" id="btnEditarChamado" value="<%= todosChamados.idChamado%>" onclick="/chamado/editarChamado"> -->
+                <a href="chamado/editarChamado<%= todosChamados.idChamado%>"> <img
+                    src="../imagens/outline_edit_black_24dp.png" alt="ícone de edtar o chamado"></a>
+              </td>
+              <td class="tdchamados"><a href="javascript:void(0);"><img
+                    src="../imagens/outline_visibility_black_24dp.png" alt="ícone de visualização do chamado"></a></td>
+            </tr>
+            <% }) %>
+        </table>
+    </form>
+  </main>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="../public/assets/js/function.js"></script>
+  <script src="../public/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../public/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+</body>
+
+</html>

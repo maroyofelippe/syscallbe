@@ -10,10 +10,9 @@ module.exports = function (syscall) {
     //Usado para retornar todos os chamados abertos
     syscall.get("/todosChamados", async function (req, res) {
         const todosChamados = await chamadoBanco.getChamado();
-        //console.log(todosChamados);
         if (req.query.fail)
             res.render("chamado/acompanhamento_todos", { mensagem: "Chamados" });
-        else res.render("chamado/acompanhamento_todos", { mensagem: null, todosChamados });
+        else res.render("chamado/todosChamados", { mensagem: null, todosChamados });
     });
 
     //Usado para abrir carregar a página de novo chamado.
@@ -24,8 +23,8 @@ module.exports = function (syscall) {
         const ambiente = await ambienteBanco.getAmbiente();
         const equipamento = await equipamentoBanco.getEquipamento();
         if (req.query.fail)
-            res.render("chamado/abrir_chamado", { mensagem: "Chamados" });
-        else res.render("chamado/abrir_chamado", { mensagem: null, usuario, tipoeqp, tipoAmbiente, ambiente, equipamento });
+            res.render("chamado/novoChamado", { mensagem: "Chamados" });
+        else res.render("chamado/novoChamado", { mensagem: null, usuario, tipoeqp, tipoAmbiente, ambiente, equipamento });
     });
 
     //Usado para gravar novo chamado.
@@ -50,8 +49,6 @@ module.exports = function (syscall) {
         var usuario = req.user;
         var chID = req.params.id;
         const chamadoId = await chamadoBanco.getChamadoById(chID);
-
-        console.log(chamadoId);
         const tipoeqp = await equipamentoBanco.getTipoEquipamento();
         const tipoAmbiente = await ambienteBanco.getTipoAmbiente();
         const ambiente = await ambienteBanco.getAmbiente();
@@ -85,8 +82,8 @@ module.exports = function (syscall) {
         }
 
         if (req.query.fail)
-            res.render("chamado/editarChamado", { mensagem: "Chamados" });
-        else res.render("chamado/editarChamado", { mensagem: null, usuario, dadosChamado, chamadoId, tipoAmbiente, tipoeqp, ambiente, equipamento, dataFormatada, dataRFormatada, dataEFormatada });
+            res.render("chamado/acompanhamento_todos", { mensagem: "Chamados" });
+        else res.render("chamado/editarChamado2", { mensagem: null, usuario, dadosChamado, chamadoId, tipoAmbiente, tipoeqp, ambiente, equipamento, dataFormatada, dataRFormatada, dataEFormatada });
     });
 
     syscall.post("/chamado/upChamado", async (req, res) => {

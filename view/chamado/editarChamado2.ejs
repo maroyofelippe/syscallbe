@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Syscall</title>
+    <link href="../public/assets/img/logo.png" rel="icon" />
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/assets/css/style_antigo.css" />
+    <link rel="stylesheet" href="../public/assets/css/style.css" />
+    
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- ======= Sidebar ======= -->
+    <div class="navigation active">
+      <ul>
+        <li class="list">
+          <a href="/inicio">
+            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+            <span class="title">Inicio</span>
+          </a>
+        </li>
+        <li class="list active">
+          <a href="chamado/abrirChamado">
+            <span class="icon"><ion-icon name="add-outline"></ion-icon></span>
+            <span class="title">Novo Chamado</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="todosChamados">
+            <span class="icon"
+              ><ion-icon name="search-outline"></ion-icon
+            ></span>
+            <span class="title">Chamados Abertos</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"
+              ><ion-icon name="documents-outline"></ion-icon
+            ></span>
+            <span class="title">Meus Chamados</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="/faq">
+            <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+            <span class="title">FAQ</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="inicio/categorias">
+            <span class="icon"><ion-icon name="list-outline"></ion-icon></span>
+            <span class="title">Categorias</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="/perfil">
+            <span class="icon"
+              ><ion-icon name="person-outline"></ion-icon
+            ></span>
+            <span class="title">Perfil</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"
+              ><ion-icon name="settings-outline"></ion-icon
+            ></span>
+            <span class="title">Configurações</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"
+              ><ion-icon name="log-out-outline"></ion-icon
+            ></span>
+            <span class="title">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="toggle">
+      <ion-icon name="menu-outline" class="open"></ion-icon>
+      <ion-icon name="close-outline" class="close"></ion-icon>
+    </div>
+    <!-- ======= Fim Sidebar ======= -->
+
+    <img id="logo-interna" src="../public/assets/img/LogoInterna.png" alt="" />
+
+    <main id="conteudo">
+      <h1>Edição de Chamados</h1>
+
+      <form name="editarChamado" id="editarChamado" action="/chamado/upChamado" method="post" >
+        <fieldset>
+          <legend>Dados Pessoais</legend>
+              <label for="nome" class="required">Nome</label><br>
+              <input type="text" name="nome" id="nome" disabled placeholder="Nome Completo" value=<%=dadosChamado.nome%>><br><br>
+
+              <label for="email2" class="required">E-mail Institucional</label><br>
+              <input type="text" name="email" id="email2" disabled placeholder="Email Institucional" value=<%=usuario.email%>>
+      </fieldset>
+
+      <fieldset>
+        <legend>Dados do Chamado</legend>
+        <table>
+            <tr>
+                <td><label for="chamadoNum" class="required">Nº do Chamado</label></td>
+                <td><label for="dataAbertura" class="required">Data Abertura</label></td>
+                <td><label for="profissionalTI" class="required">Profissional TI</label></td>
+            </tr>
+
+            <tr>
+                <td id="td5"><input type="text" name="idChamado" id="idChamado" value=<%=dadosChamado.idChamado%>></td>
+                <td id="td6"><input type="text" name="dataAbertura" id="dataAbertura" value=<%=dataFormatada%> /></td>
+                <td class="td7"><br>
+                
+                    <select name="Profissionalti_idProfissionalTI" id="profissionalTI2">
+                        <option value="" selected disabled>Selecione um Profissional de TI</option>
+                        <% ambiente.forEach(function(ambiente){ %>
+                            <option selected value=<%= chamadoId.Ambiente %>></option>
+                        <% }) %>
+                    </select><br><br>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+                        <fieldset>
+                    <legend>Sobre seu problema</legend>
+                    <table>
+                        <tr>
+                            <td><label for="tipoAmbiente2" class="required">Tipo Ambiente</label></td>
+                            <td><label for="localAmbiente2" class="required">Ambiente</label></td>
+                            <td><label for="tipoEquipamento2" class="required">Tipo de Equipamento</label></td>
+                            <td><label for="nomeEquipamento2" class="required">Nome do Equipamento</label></td>
+                        </tr>
+                        <tr>
+                        <td class="td1">
+                            <select name="tipoAmbiente" id="tipoAmbiente2">
+                                <option value=""  disabled>Selecione um Tipo de Ambiente</option>
+                                <% tipoAmbiente.forEach(function(tipoAmbiente){ %>
+                                    <option  value=<%= tipoAmbiente.idTipoAmbiente %>> <%= tipoAmbiente.descricao%> </option>
+                                <% }) %>    
+                                                            
+                            </select><br><br>
+                        </td>
+
+                        <td class="td2">
+                            
+                            <select name="Ambiente_idAmbiente" id="localAmbiente2">
+                                <option value="" selected disabled>Selecione um Local</option>
+                                <option value="<%= dadosChamado.Ambiente_idTipoAmbiente %>" selected disabled><%= dadosChamado.Ambiente %></option>
+                            </select><br><br>
+                        </td>
+                        <td class="td3">
+                            
+                            <select name="TipoEquipamento_codTipoEquipamento" id="tipoEquipamento2">
+                                <option value="<%= dadosChamado.TipoEquipamento_codTipoEquipamento %>" selected disabled><%= dadosChamado.tipoEquipamento %></option>
+                            </select><br><br>
+                        </td>
+                        <td class="td4">
+
+                            <select name="Equipamento_idEquipamento" id="Equipamento">
+                                <option value="<%= dadosChamado.Equipamento_idEquipamento %>" selected><%= dadosChamado.Equipamento %></option>
+                            </select><br><br>
+                        </td>
+                    </tr>
+                    </table>                        
+                        <label for="descricaoProblema" class="required">Descrição da Solicitação</label><br>
+                        <textarea name="descricaoProblema" id="descricaoProblema" cols="50" rows="20" placeholder="Descreva aqui sua solicitação com os detalhes desejados."><%=dadosChamado.descricaoProblema %></textarea><br>
+
+                        <label for="descricaoSolucao" class="required">Descrição da Solução</label><br>
+                        <textarea name="descricaoSolucao" id="descricaoSolucao" cols="50" rows="20" placeholder="Descreva aqui a solução do problema relatado."><%=dadosChamado.descricaoSolucao %></textarea><br><br>
+
+                        <label for="dataResolucao" class="required">Data Resolução</label><br>
+                        <input type="date" name="dataResolucao" id="dataResolucao" value="<%= dataRFormatada%>"></td><br><br>
+                            
+                        <label for="dataEncerramento" class="required">Data Encerramento</label><br>
+                        <input type="date" name="dataEncerramento" id="dataEncerramento" value="<%= dataEFormatada%>">
+
+                </fieldset>
+                <input type="submit" name="enviar" id="enviar" value="Enviar"> <input type="reset" name="limpar" id="limpar" value="Limpar">
+      </form>
+    </main>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="../public/assets/js/function.js"></script>
+    <script src="../public/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../public/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  </body>
+</html>

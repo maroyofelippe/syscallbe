@@ -9,8 +9,8 @@ module.exports = function (syscall) {
     syscall.get("/perfil", function (req, res) {
         var usuario = req.user;
         if (req.query.fail)
-            res.render("usuario/perfil", { mensagem: "Perfil de Usuário" });
-        else res.render("usuario/perfil", { mensagem: null, usuario });
+            res.render("usuario/perfil2", { mensagem: "Perfil de Usuário" });
+        else res.render("usuario/perfil2", { mensagem: null, usuario });
     });
 
     syscall.post("/updatePerfil", async (req, res) => {

@@ -1891,7 +1891,7 @@ section {
   margin-bottom: 1%;
 }
 
-.panel{
+.panel, main{
   margin-left: 22%;
   margin-right: 2%;
   font-size: 1.3em;
@@ -1964,4 +1964,13 @@ section {
 
 .form-control[type="color"]{
   height: 37px;
+}
+
+.panel .form-control[type="number"], .form-control, .form-select, .salvar{
+  height: 50px;
+  font-size: 1em;
+}
+
+.salvar{
+  height: 60px;
 }

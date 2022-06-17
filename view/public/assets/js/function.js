@@ -143,6 +143,8 @@ document.querySelectorAll("button[data-dismiss]").forEach(button => {
         $(document.querySelector("#modal-novo-tipo-status")).modal("hide");
         $(document.querySelector("#modal-novo-status")).modal("hide");
         $(document.querySelector("#modal-status-list")).modal("hide");
+        $(document.querySelector("#modal-ambientes-list")).modal("hide");
+        $(document.querySelector("#modal-novo-ambiente")).modal("hide");
     });
 });
 
@@ -152,4 +154,8 @@ document.getElementById("novo-tipo-status").addEventListener("click", () => {
 
 document.getElementById("novo-status").addEventListener("click", () => {
     $(document.querySelector("#modal-novo-status")).modal("show");
-})
+});
+
+document.getElementById("novo-ambiente").addEventListener("click", () => {
+    $(document.querySelector("#modal-novo-ambiente")).modal("show");
+});
