@@ -1974,3 +1974,10 @@ section {
 .salvar{
   height: 60px;
 }
+
+#btnStatus2{
+  width: 200px;
+  height: auto;
+  border: none;
+  border-radius: 7px;
+}

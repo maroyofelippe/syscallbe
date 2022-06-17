@@ -13,7 +13,9 @@ syscall.get("/inicio", function (req, res) {
   syscall.get("/categorias", function (req, res) {
     if (req.query.fail)
       res.render("inicio/login", { mensagem: "Falha de Login" });
-    else res.render("inicio/categorias", { mensagem: null });
+
+    else res.redirect('/todosRecursos');
+    
   });
 
 //GET da página Login.ejs

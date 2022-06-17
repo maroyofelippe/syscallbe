@@ -206,6 +206,12 @@ CREATE TABLE fabricante (
 ) auto_increment = 1;
 
 INSERT INTO fabricante (descricao) VALUES ('LENOVO');
+INSERT INTO fabricante (descricao) VALUES   ('HP'),
+                                            ('TOSHIBA'),
+                                            ('LOGITEC'),
+                                            ('DELL'),
+                                            ('LG');
+
 
 CREATE TABLE tipoequipamento (
     codTipoEquipamento INT NOT NULL auto_increment,

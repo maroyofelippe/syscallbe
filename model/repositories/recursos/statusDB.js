@@ -12,4 +12,10 @@ async function getUltimoID() {
     return await conn.query('SELECT MAX(idChamado) as ultimoID from chamado;');
 }
 
-module.exports = { addStatus2Chamado, getUltimoID }
+async function getTodosStatus() {
+    const conn = await statusDB.connect();
+    const [rows] = await conn.query('SELECT * FROM status2;');
+    return rows;
+}
+
+module.exports = { addStatus2Chamado, getUltimoID, getTodosStatus }
